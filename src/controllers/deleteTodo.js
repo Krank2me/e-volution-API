@@ -3,8 +3,6 @@ const firestore = require('../config/dbConexion');
 async function deleteTodo(req, res) {
 
   const {id} = req.params;
-  console.log('*** id: ', id);
-
 
   try {
 
@@ -21,9 +19,7 @@ async function deleteTodo(req, res) {
 
   } catch (error) {
     console.log('*** error: ', error);
-
   }
-
 }
 
 module.exports = deleteTodo;

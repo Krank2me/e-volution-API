@@ -4,8 +4,6 @@ async function updateTodo(req, res) {
 
   const {id, name, priority, dueDate} = req.body;
 
-  console.log('*** req:', req.body);
-
   try {
     const updateTodo = {
       name,

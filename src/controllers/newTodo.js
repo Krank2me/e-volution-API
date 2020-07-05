@@ -18,7 +18,6 @@ async function newTodo(req, res) {
     } else {
       res.status(500).send({message: 'an error ocurred while adding new todo'});
     }
-
   } catch (error) {
     res.status(500).send({erroMessage: 'server internal error'});
   }

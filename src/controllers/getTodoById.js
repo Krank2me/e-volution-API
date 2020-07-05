@@ -12,7 +12,6 @@ async function getAllTodo(req, res) {
     } else {
       res.status(400).send({message: 'no data found'});
     }
-
   } catch (error) {
     res.status(500).send({message: 'server internal error'});
   }

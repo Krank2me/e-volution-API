@@ -3,8 +3,6 @@ const firestore = require('../config/dbConexion');
 async function getAllTodo(req, res) {
 
   const {uid} = req.query;
-  console.log("getAllTodo -> req.params", req.query);
-  console.log("getAllTodo -> uid", uid);
 
   try {
     const getTodos = await firestore.collection('todos').where('uid', '==', uid).get();
@@ -19,7 +17,7 @@ async function getAllTodo(req, res) {
       const todos = getTodos.docs.map(doc => {
         const todo = doc.data();
         const prioritySelected = priorities.find(priority => priority.id === todo.priority);
-        console.log('*** prioritySelected', prioritySelected);
+
         return {
           name: todo.name,
           dueDate: todo.dueDate,
@@ -33,7 +31,6 @@ async function getAllTodo(req, res) {
     }
 
   } catch (error) {
-    console.log("getAllTodo -> error", error);
     res.status(500).send({message: error});
   }
 
