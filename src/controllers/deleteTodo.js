@@ -1,12 +1,17 @@
 const firestore = require('../config/dbConexion');
 
 async function deleteTodo(req, res) {
+
+  const {id} = req.params;
+  console.log('*** id: ', id);
+
+
   try {
 
-    const getTodo = await firestore.collection('todos').doc(req.body.id).get();
+    const getTodo = await firestore.collection('todos').doc(id).get();
 
     if (getTodo.data()) {
-      const result = await firestore.collection('todos').doc(req.body.id).delete();
+      const result = await firestore.collection('todos').doc(id).delete();
       if (result) {
         res.status(200).send({message: 'todo deleted'});
       }

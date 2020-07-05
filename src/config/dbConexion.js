@@ -1,10 +1,11 @@
+require('dotenv').config()
 const firebase = require('firebase-admin');
 
-var serviceAccount = require("../../e-volutionfb-firebase-adminsdk-btwpa-1962bf1bd4.json");
+var serviceAccount = require(process.env.FIREBASE_SERVICE_ACOUNT);
 
 firebase.initializeApp({
   credential: firebase.credential.cert(serviceAccount),
-  databaseURL: 'https://e-volutionfb.firebaseio.com/'
+  databaseURL: process.env.DATABASE_URL
 });
 
 const db = firebase.firestore();

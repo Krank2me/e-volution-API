@@ -2,13 +2,19 @@ const firestore = require('../config/dbConexion');
 
 async function updateTodo(req, res) {
 
+  const {id, name, priority, dueDate} = req.body;
+
+  console.log('*** req:', req.body);
+
   try {
     const updateTodo = {
-      name: req.body.name,
-      priority: req.body.priority,
-      dueDate: req.body.dueDate
+      name,
+      priority,
+      dueDate
     }
-    const result = await firestore.collection('todos').doc(req.body.id).update(updateTodo);
+
+    const result = await firestore.collection('todos').doc(id).set({...updateTodo}, {merge: true});
+
     if (result) {
       res.status(200).send({message: 'todo updated'});
     } else {
@@ -18,6 +24,6 @@ async function updateTodo(req, res) {
   } catch (error) {
     console.log('*** error: ', error);
   }
-}
+};
 
 module.exports = updateTodo;

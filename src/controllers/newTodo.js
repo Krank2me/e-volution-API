@@ -2,16 +2,19 @@ const firestore = require('../config/dbConexion');
 
 async function newTodo(req, res) {
 
+  const {name, priority, dueDate, uid} = req.body;
+
   try {
     const newTodo = {
-      name: req.body.name,
-      priority: req.body.priority,
-      dueDate: req.body.dueDate
+      name,
+      priority,
+      dueDate,
+      uid
     }
     const result = await firestore.collection('todos').add(newTodo);
 
     if (result) {
-      res.status(200).send({message: 'todo added'});
+      res.status(200).send(result);
     } else {
       res.status(500).send({message: 'an error ocurred while adding new todo'});
     }

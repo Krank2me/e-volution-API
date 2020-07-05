@@ -1,14 +1,16 @@
+require('dotenv').config();
 const firebase = require('firebase');
 
-var firebaseConfig = {
-  apiKey: "AIzaSyBPVrua5g_HqHlSVnx3fNM9SBfWvydqLCc",
-  authDomain: "e-volutionfb.firebaseapp.com",
-  databaseURL: "https://e-volutionfb.firebaseio.com",
-  projectId: "e-volutionfb",
-  storageBucket: "e-volutionfb.appspot.com",
-  messagingSenderId: "522715167673",
-  appId: "1:522715167673:web:fcbcd7795b3c4376a21468"
+const firebaseConfig = {
+  apiKey: process.env.FIREBASE_CONFIG_API_KEY,
+  authDomain: process.env.FIREBASE_CONFIG_AUTH_DOMAIN,
+  databaseURL: process.env.DATABASE_URL,
+  projectId: process.env.FIREBASE_CONFIG_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_CONFIG_STORE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_CONFIG_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_CONFIG_APP_ID
 };
+console.log("firebaseConfig", firebaseConfig);
 
 firebase.initializeApp(firebaseConfig);
 

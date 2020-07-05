@@ -1,10 +1,16 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
+const override = require('method-override');
 const morgan = require('morgan');
+const cors = require('cors');
 
 const app = express();
 
-app.set('port', process.env.PORT || 3000);
+app.use(cors());
+app.use(override());
+
+app.set('port', process.env.PORT);
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
