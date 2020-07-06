@@ -3,9 +3,10 @@ const firestore = require('../config/dbConexion');
 async function getAllTodo(req, res) {
 
   const {uid} = req.query;
+  console.log("getAllTodo -> uid", uid);
 
   try {
-    const getTodos = await firestore.collection('todos').where('uid', '==', uid).get();
+    const getTodos = await firestore.collection('todos').where('uid', '==', uid).orderBy('dueDate', 'asc').get();
     const getPriorities = await firestore.collection('priorities').get();
     const priorities = getPriorities.docs.map(doc => ({
       ...doc.data(),

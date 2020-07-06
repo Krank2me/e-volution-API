@@ -7,10 +7,11 @@ async function newTodo(req, res) {
   try {
     const newTodo = {
       name,
-      priority,
+      priority: priority || '1',
       dueDate,
       uid
     }
+    console.log("newTodo -> newTodo", newTodo);
     const result = await firestore.collection('todos').add(newTodo);
 
     if (result) {
