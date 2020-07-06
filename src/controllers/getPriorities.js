@@ -3,11 +3,11 @@ const firestore = require('../config/dbConexion');
 async function getPriorities(req, res) {
 
   try {
-    const priotities = await firestore.collection('priorities').get();
+    const priorities = await firestore.collection('priorities').get();
 
-    if (priotities) {
+    if (priorities) {
       const docs = [];
-      priotities.forEach((doc) => {
+      priorities.forEach((doc) => {
         docs.push({...doc.data(), id: doc.id});
       });
       res.status(200).send(docs);

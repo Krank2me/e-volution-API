@@ -3,7 +3,6 @@ const firestore = require('../config/dbConexion');
 async function getAllTodo(req, res) {
 
   const {uid} = req.query;
-  console.log("getAllTodo -> uid", uid);
 
   try {
     const getTodos = await firestore.collection('todos').where('uid', '==', uid).orderBy('dueDate', 'asc').get();

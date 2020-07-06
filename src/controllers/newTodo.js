@@ -11,7 +11,6 @@ async function newTodo(req, res) {
       dueDate,
       uid
     }
-    console.log("newTodo -> newTodo", newTodo);
     const result = await firestore.collection('todos').add(newTodo);
 
     if (result) {
